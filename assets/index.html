@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tareas</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <div class="center-container"> <!-- Contenedor centrado -->
+        <header>
+            <h1>Lista De Tareas</h1>
+        </header>
+        <main>
+            <div class="task-container">
+                <input type="text" id="task" placeholder="Agregar nueva tarea...">
+                <button id="add-button" style="background-color: green;">Agregar</button>
+            </div>
+            <div class="task-summary">
+                <p><span id="total-tasks">0</span>Realizada</p>
+                <p><span id="completed-tasks">3</span>Tareas Pendientes</p>
+            </div>
+            <ul id="task-list">
+                <!-- Aquí se mostrarán las tareas -->
+                <li class="task" id="1">
+                    <span>1. Bañarse</span>
+                    <button class="delete-button" style="background-color: orange;">Sí</button>
+                    <button class="not-done-button" style="background-color: red;">No</button>
+                </li>
+                <li class="task" id="2">
+                    <span>2. Comer</span>
+                    <button class="delete-button" style="background-color: orange;">Sí</button>
+                    <button class="not-done-button" style="background-color: red;">No</button>
+                </li>
+                <li class="task" id="3">
+                    <span>3. Dormir</span>
+                    <button class="delete-button" style="background-color: orange;">Sí</button>
+                    <button class="not-done-button" style="background-color: red;">No</button>
+                </li>
+            </ul>
+        </main>
+    </div>
+    <script>
+        const addButton = document.getElementById('add-button');
+        const taskInput = document.getElementById('task');
+        const taskList = document.getElementById('task-list');
+        const totalTasks = document.getElementById('total-tasks');
+        const completedTasks = document.getElementById('completed-tasks');
+
+        let tasks = [];
+
+        addButton.addEventListener('click', () => {
+            const taskText = taskInput.value.trim();
+            if (taskText !== '') {
+                addTask(taskText);
+                taskInput.value = '';
+                displayTasks();
+            }
+        });
+
+        taskInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                const taskText = taskInput.value.trim();
+                if (taskText !== '') {
+                    addTask(taskText);
+                    taskInput.value = '';
+                    displayTasks();
+                }
+            }
+        });
+
+        function addTask(taskText) {
+            const taskId = tasks.length + 1;
+            const task = {
+                id: taskId,
+                description: taskText,
+                completed: false
+            };
+            tasks.push(task);
+        }
+
+        function displayTasks() {
+            // Limpiar la lista de tareas
+            taskList.innerHTML = '';
+
+            // Reasignar IDs y mostrar tareas
+            tasks.forEach((task, index) => {
+                task.id = index + 1;
+
+                const taskItem = document.createElement('li');
+                taskItem.classList.add('task');
+                taskItem.dataset.id = task.id;
+
+                const taskContent = document.createElement('span');
+                taskContent.textContent = `${task.id}. ${task.description}`;
+                if (task.completed) {
+                    taskContent.textContent += ' (realizado)';
+                }
+
+                const deleteButton = document.createElement('button');
+                deleteButton.classList.add('delete-button');
+                deleteButton.textContent = 'Sí';
+                deleteButton.style.backgroundColor = task.completed ? 'green' : 'orange';
+                deleteButton.addEventListener('click', () => {
+                    task.completed = true;
+                    taskContent.textContent += ' (realizado)';
+                    deleteButton.style.backgroundColor = 'green';
+                    updateTaskCount();
+                });
+
+                const notDoneButton = document.createElement('button');
+                notDoneButton.classList.add('not-done-button');
+                notDoneButton.textContent = 'No';
+                notDoneButton.addEventListener('click', () => {
+                    task.completed = false;
+                    taskContent.textContent = taskContent.textContent.replace(' (realizado)', '');
+                    deleteButton.style.backgroundColor = 'orange';
+                    updateTaskCount();
+                });
+
+                taskItem.appendChild(taskContent);
+                taskItem.appendChild(deleteButton);
+                taskItem.appendChild(notDoneButton);
+                taskList.appendChild(taskItem);
+            });
+
+            updateTaskCount();
+        }
+
+        function updateTaskCount() {
+            totalTasks.textContent = tasks.length;
+
+            const completed = tasks.filter(task => task.completed).length;
+            completedTasks.textContent = completed;
+        }
+    </script>
+</body>
+</html>
+
+<p> Diego, te mando un codigo que me resulto, lo separe los codigos pero no me funcionaron, lo demás fueron fallidos, el desafio muy dificil para mi. aqui hay etiquetas que nunca me resultatron </p>

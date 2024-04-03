@@ -1,0 +1,81 @@
+/* styles.css */
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center; /* Centramos el contenido en el eje horizontal */
+    align-items: center; /* Centramos el contenido en el eje vertical */
+    height: 100vh; /* Usamos todo el alto de la ventana del navegador */
+    margin: 0; /* Eliminamos los márgenes */
+    padding: 0; /* Eliminamos el padding */
+}
+
+/* Estilos para el contenedor centrado */
+.center-container {
+    text-align: center; /* Centramos el texto */
+    width: 80%; /* Usamos el 80% del ancho disponible */
+}
+
+/* Estilos para el contenedor de tareas */
+.task-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px auto; /* Centramos el contenedor de tareas */
+}
+
+/* Estilos para el botón de agregar */
+#add-button {
+    background-color: rgb(159, 208, 241);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Agregamos una transición al cambiar el color de fondo */
+}
+
+#add-button:hover {
+    background-color: #008000; /* Cambiamos el color de fondo al pasar el cursor sobre el botón */
+}
+
+/* Estilos para las tareas */
+.task {
+    list-style: none;
+    margin: 10px auto; /* Centramos las tareas */
+    padding: 5px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Estilos para el botón de eliminar */
+.delete-button {
+    background-color: #f0f0f0; /* Cambiamos el color de fondo a gris por defecto */
+    color: #000; /* Cambiamos el color del texto a negro por defecto */
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.task.completed .delete-button {
+    background-color: rgb(196, 244, 196); /* Cambiamos el color de fondo a verde cuando la tarea se completa */
+    color: #fff; /* Cambiamos el color del texto a blanco cuando la tarea se completa */
+}
+
+/* Estilos para el botón no funcional */
+.not-done-button {
+    background-color: red; /* Color de fondo rojo */
+    color: #fff; /* Color de texto blanco */
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
+
+/* Estilos para el resumen de tareas */
+.task-summary {
+    text-align: left; /* Alineamos el texto a la izquierda */
+    margin-left: 20px; /* Agregamos margen a la izquierda */
+}
+
